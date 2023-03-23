@@ -56,9 +56,9 @@ Esta agência precisa de uma interface gráfica para que seus clientes possam se
 
 ## Resumo de páginas
 
-- Uma page de login.
-- Uma page de cadastro de cliente.
-- Uma page de atualização e remoção de cliente.
+- Uma page de login. OK
+- Uma page de cadastro de cliente. OK
+- Uma page de atualização e remoção de cliente. OK
 - Uma page de inserção de operação.
 - Uma page de listagem de operações deste cliente.
 - Uma page de listagem de pacotes.
