@@ -1,0 +1,32 @@
+#data-columns {
+  max-width: 880px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#client-info {
+  height: 100%;
+  width: 430px;
+  padding: 30px;
+  background-color: #00072d;
+  border-radius: 10px;
+}
+
+#client-info h1 {
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+#data-list {
+  font-size: 20px;
+}
+
+#data-list h4 {
+  font-size: 20px;
+  padding: 20px 0 4px 0;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 4px;
+}

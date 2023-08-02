@@ -13,7 +13,7 @@ export class ValidateClienteController {
       });
       if (valid) return response.status(200).send();
       else return response.status(401).send();
-    } catch (error) {
+    } catch (error: any) {
       return response.status(401).json({
         message: error.message || "Unexpected Error",
       });

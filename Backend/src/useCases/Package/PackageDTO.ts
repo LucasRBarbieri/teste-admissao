@@ -1,6 +1,6 @@
 export interface ICreatePackageDTO{
   used_bill: number;
-  value: number;
+  amount: number;
 }
 
 export interface IPackageConstructorDTO{

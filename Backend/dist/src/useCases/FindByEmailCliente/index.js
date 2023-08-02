@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findByEmailClienteController = exports.findByEmailClienteUseCase = void 0;
+const ClienteRepo_1 = require("../../repositories/implementation/ClienteRepo");
+const FindByEmailClienteUseCase_1 = require("./FindByEmailClienteUseCase");
+const FindByEmailClienteController_1 = require("./FindByEmailClienteController");
+const clienteRepo = new ClienteRepo_1.ClienteRepo();
+const findByEmailClienteUseCase = new FindByEmailClienteUseCase_1.FindByEmailClienteUseCase(clienteRepo);
+exports.findByEmailClienteUseCase = findByEmailClienteUseCase;
+const findByEmailClienteController = new FindByEmailClienteController_1.FindByEmailClienteController(findByEmailClienteUseCase);
+exports.findByEmailClienteController = findByEmailClienteController;

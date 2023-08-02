@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findByCpfClienteController = exports.findByCpfClienteUseCase = void 0;
+const ClienteRepo_1 = require("../../repositories/implementation/ClienteRepo");
+const FindByCpfClienteUseCase_1 = require("./FindByCpfClienteUseCase");
+const FindByCpfClienteController_1 = require("./FindByCpfClienteController");
+const clienteRepo = new ClienteRepo_1.ClienteRepo();
+const findByCpfClienteUseCase = new FindByCpfClienteUseCase_1.FindByCpfClienteUseCase(clienteRepo);
+exports.findByCpfClienteUseCase = findByCpfClienteUseCase;
+const findByCpfClienteController = new FindByCpfClienteController_1.FindByCpfClienteController(findByCpfClienteUseCase);
+exports.findByCpfClienteController = findByCpfClienteController;

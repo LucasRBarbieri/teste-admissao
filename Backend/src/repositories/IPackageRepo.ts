@@ -1,7 +1,7 @@
 import { Package } from "../entities/Package";
 
 export interface IPackageRepo {
-  create(packages: Package): Promise<number>;
+  create(packages: Package): Promise<{ id: number }>;
 
   findById(package_id: number): Promise<Package | undefined>;
   findByBills(used_bill: number): Promise<Package[]>;

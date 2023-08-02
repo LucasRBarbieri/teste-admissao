@@ -14,7 +14,7 @@ export class FindByCpfClienteController{
             const clientes = await this.findByCpfClienteUseCase.execute(cpf)
 
             return response.status(200).send(clientes);
-        } catch (error) {
+        } catch (error:any) {
             return response.status(401).json({
                 message: error.message || 'Unexpected Error'
             })

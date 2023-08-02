@@ -2,8 +2,10 @@ import { Package } from "../../entities/Package";
 import { Operation } from "../../entities/Operation";
 import { IPackageRepo } from "../../repositories/IPackageRepo";
 import { ICreatePackageDTO } from "./PackageDTO";
+import { Request, Response } from "express";
 
 export class PackageUseCase{
+
     constructor(
         private packageRepo: IPackageRepo
     ){
@@ -18,7 +20,9 @@ export class PackageUseCase{
 
         const packag = new Package({used_bill, bills_amount})
         
-        return await this.packageRepo.create(packag);
+        const { id } = await this.packageRepo.create(packag);
+
+        return this.packageRepo.findById(id);
     }
 
     async insert_into(package_id: number, operation: Operation){
@@ -51,7 +55,7 @@ export class PackageUseCase{
         return this.packageRepo.findAvailableByBills(operation.used_bill, bills_amount)
     }
 
-    private calculate_bills_amount ({value, used_bill}) {
-        return value / used_bill;
+    private calculate_bills_amount ({amount, used_bill}:{amount: number; used_bill: number;}) {
+        return amount / used_bill;
     }
 }

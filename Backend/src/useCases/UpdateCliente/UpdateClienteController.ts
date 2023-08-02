@@ -9,7 +9,7 @@ export class UpdateHeroController{
     }
 
     async handle(request:Request, response:Response){
-        const {cpf, name, phone, email, password} = request.body;
+        const { cpf, name, phone, email, password, address, birth } = request.body;
 
         try {
             await this.updateClienteUseCase.execute({
@@ -18,10 +18,12 @@ export class UpdateHeroController{
                 phone,
                 email,
                 password,
+                address,
+                birth
             })
 
             return response.status(200).send();
-        } catch (error) {
+        } catch (error: any) {
             return response.status(401).json({
                 message: error.message || 'Unexpected Error'
             })

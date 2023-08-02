@@ -10,7 +10,7 @@ export class FindByEmailClienteController {
       const cliente = await this.findByEmailClienteUseCase.execute(email);
 
       return response.status(200).send(cliente);
-    } catch (error) {
+    } catch (error:any) {
       return response.status(401).json({
         message: error.message || "Unexpected Error",
       });

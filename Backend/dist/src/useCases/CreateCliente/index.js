@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createClienteController = exports.createClienteUseCase = void 0;
+const ClienteRepo_1 = require("../../repositories/implementation/ClienteRepo");
+const CreateClienteUseCase_1 = require("./CreateClienteUseCase");
+const CreateClienteController_1 = require("./CreateClienteController");
+const clienteRepo = new ClienteRepo_1.ClienteRepo();
+const createClienteUseCase = new CreateClienteUseCase_1.CreateClienteUseCase(clienteRepo);
+exports.createClienteUseCase = createClienteUseCase;
+const createClienteController = new CreateClienteController_1.CreateClienteController(createClienteUseCase);
+exports.createClienteController = createClienteController;

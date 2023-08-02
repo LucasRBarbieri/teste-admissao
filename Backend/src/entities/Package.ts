@@ -1,9 +1,9 @@
 import { IPackageConstructorDTO } from "../useCases/Package/PackageDTO";
 
 export class Package {
-  public id: number;
+  public id!: number;
   public created_at: Date;
-  public closed_at: Date;
+  public closed_at!: Date;
   public bills_amount: number;
   public status: string;
   public used_bill: number;

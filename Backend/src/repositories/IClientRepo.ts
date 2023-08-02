@@ -10,4 +10,5 @@ export interface IClientRepo {
 
   create(cliente: Client): Promise<void>;
   update(cliente: Client): Promise<void>;
+  delete(cpf: string): Promise<void>;
 }

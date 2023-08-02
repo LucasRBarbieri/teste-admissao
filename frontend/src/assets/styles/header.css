@@ -1,0 +1,69 @@
+#header {
+  background-color: #00072d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+}
+
+#header-title {
+  font-size: xx-large;
+  font-family: "Poppins", sans-serif;
+  background-color: #00072d;
+  color: #eadeda;
+}
+
+#welcome-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 200px;
+  font-size: 18px;
+}
+
+#welcome-message button {
+  margin-left: 10px;
+  font-size: 16px;
+  padding: 2px 4px;
+}
+
+#login-component {
+  background-color: #00072d;
+  color: #eadeda;
+  position: absolute;
+  right: 0px;
+}
+
+#login-component form {
+  background-color: inherit;
+  display: flex;
+  flex-direction: row;
+  padding-right: 18px;
+}
+
+#login-component form input {
+  border-radius: 4px;
+  margin-bottom: 1em;
+  color: #eadeda;
+}
+
+#submit {
+  min-width: 55px;
+}
+
+#login-component form div {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  margin-right: 12px;
+}
+
+#login-component form div {
+  max-width: 150px;
+}

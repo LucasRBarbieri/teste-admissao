@@ -7,7 +7,7 @@ export class FindByCpfClienteUseCase{
 
     }
 
-    async execute(cpf){
+    async execute(cpf: string){
         return await this.clienteRepo.findByCPF(cpf)
     }
 }

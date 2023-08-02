@@ -1,22 +1,51 @@
+import { OperationRepo } from "../repositories/implementation/OperationRepo";
+import { PackageRepo } from "../repositories/implementation/PackageRepo";
+import { PackageUseCase } from "../useCases/Package/PackageUseCase";
+
 export class Operation {
-  public id: number;
-  public value: number;
+  public id!: number;
+  public amount: number;
   public cpf_client: string;
-  public id_package: number;
+  private id_package!: number;
   public status: string;
-  public prefered_bill: number;
+  public prefered_bill!: number;
   public used_bill: number;
 
-  constructor(props: Operation) {
-    this.value = props.value;
+  constructor(props: {amount: number, cpf_client: string, prefered_bill?: number}) {
+    this.amount = props.amount;
     this.cpf_client = props.cpf_client;
-    this.prefered_bill = props.prefered_bill;
     this.status = "Aberto";
-    if (this.prefered_bill){
-    this.used_bill = this.prefered_bill;
+    if (props.prefered_bill){
+    this.used_bill = props.prefered_bill;
     } else {
-      /*se valor divido pelo valor da nota for >50, ele precisa usar uma nota maior;
-      se o valor for =5000, ele é obrigado a usar notas de 100;
-      */
-    }}
+      if(this.amount % 100 === 0 && this.amount / 100 <= 50) {
+        this.used_bill = 100;
+      }
+      else if(this.amount % 50 === 0 && this.amount / 50 <= 50) {
+        this.used_bill = 50;
+      }
+      else if(this.amount % 10 === 0 && this.amount / 10 <= 50) {
+        this.used_bill = 10;
+      }
+      else {
+        throw new Error('Invalid value')
+      }
+    }
+  }
+
+    async SetIdPackage() {
+      const packageUseCase = new PackageUseCase(new PackageRepo())
+      let packag = await packageUseCase.find_available(this)
+      if(packag)
+        this.id_package = packag.id
+      else {
+        packag = await packageUseCase.create({ amount: this.amount, used_bill: this.used_bill })
+        if(packag) this.id_package = packag.id
+      }
+      packageUseCase.insert_into(this.id_package, this)
+    }
+
+    GetIdPackage(): number | undefined {
+      return this.id_package
+    }
 }

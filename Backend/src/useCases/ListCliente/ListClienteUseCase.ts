@@ -1,8 +1,8 @@
-import { IClienteRepo } from "../../repositories/IClienteRepo";
+import { IClientRepo } from "../../repositories/IClientRepo";
 
 export class ListClienteUseCase{
     constructor(
-        private clienteRepo: IClienteRepo
+        private clienteRepo: IClientRepo
     ){
 
     }

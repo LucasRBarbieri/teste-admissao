@@ -5,7 +5,7 @@ import { IOperationRepo } from "../IOperationRepo";
 export class OperationRepo implements IOperationRepo {
   async create(Operation: Operation): Promise<void> {
     try {
-      await connection("Operation").insert(Operation);
+      await connection("operations").insert(Operation);
     } catch (error) {
       console.log(error);
     }
@@ -13,38 +13,38 @@ export class OperationRepo implements IOperationRepo {
 
   async findById(operation_id: string): Promise<Operation | undefined> {
     return (
-        await connection("Operations")
+        await connection("operations")
           .select("*")
           .where("id", operation_id)
-          .from<Operation>("Operations")
+          .from<Operation>("operations")
       ).pop();
   }
 
   async findByBills(used_bill: number): Promise<Operation[]> {
     return (
-        await connection("Operations")
+        await connection("operations")
             .select("*")
             .where("used_bill", used_bill)
-            .from<Operation>("Operations")
+            .from<Operation>("operations")
     )
   }
 
   async findByStatus(status: string): Promise<Operation[]> {
     return (
-        await connection("Operations")
+        await connection("operations")
             .select("*")
             .where("status", status)
-            .from<Operation>("Operations")
+            .from<Operation>("operations")
     )
   }
 
   async index(): Promise<Operation[]> {
-    return await connection("Operation").select("*").from<Operation>("Operation");
+    return await connection("operations").select("*").from<Operation>("operations");
   }
 
   async updateStatus(operation_id: number, status: string): Promise<void> {
     try {
-      await connection("Operation").where("id", operation_id).update({status});
+      await connection("operations").where("id", operation_id).update({status});
     } catch (error) {
       console.log(error);
     }

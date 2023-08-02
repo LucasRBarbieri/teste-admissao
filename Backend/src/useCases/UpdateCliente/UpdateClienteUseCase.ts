@@ -1,9 +1,9 @@
-import { IClienteRepo } from "../../repositories/IClienteRepo";
-import { IUpdateClienteRequestDTO } from "../../UpdateClienteDTO";
+import { IClientRepo } from "../../repositories/IClientRepo";
+import { IUpdateClienteRequestDTO } from "./UpdateClienteDTO";
 
 export class UpdateClienteUseCase{
     constructor(
-        private clienteRepo: IClienteRepo
+        private clienteRepo: IClientRepo
     ){
 
     }

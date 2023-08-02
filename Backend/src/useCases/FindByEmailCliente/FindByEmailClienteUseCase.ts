@@ -1,13 +1,13 @@
-import { IClienteRepo } from "../../repositories/IClienteRepo";
+import { IClientRepo } from "../../repositories/IClientRepo";
 
 export class FindByEmailClienteUseCase{
     constructor(
-        private clienteRepo: IClienteRepo
+        private clienteRepo: IClientRepo
     ){
 
     }
 
-    async execute(email){
+    async execute(email:string){
         return await this.clienteRepo.findByEmail(email)
     }
 }

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateClienteController = exports.validateClienteUseCase = void 0;
+const ClienteRepo_1 = require("../../repositories/implementation/ClienteRepo");
+const ValidateClienteUseCase_1 = require("./ValidateClienteUseCase");
+const ValidateClienteController_1 = require("./ValidateClienteController");
+const clienteRepo = new ClienteRepo_1.ClienteRepo();
+const validateClienteUseCase = new ValidateClienteUseCase_1.ValidateClienteUseCase(clienteRepo);
+exports.validateClienteUseCase = validateClienteUseCase;
+const validateClienteController = new ValidateClienteController_1.ValidateClienteController(validateClienteUseCase);
+exports.validateClienteController = validateClienteController;

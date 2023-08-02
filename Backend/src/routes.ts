@@ -6,6 +6,9 @@ import { findByCpfClienteController } from "./useCases/FindByCpfCliente";
 import { findByNameClienteController } from "./useCases/FindByNameCliente";
 import { findByEmailClienteController } from "./useCases/FindByEmailCliente";
 import { validateClienteController } from "./useCases/ValidateCliente";
+import { listOperationsController } from "./useCases/ListOperations";
+import { createOperationController } from "./useCases/CreateOperation";
+import { deleteClienteController } from "./useCases/DeleteCliente";
 
 const router = Router();
 
@@ -24,15 +27,29 @@ router.put("/clientes", (request, response) =>
 router.get("/clientes/cpf/:cpf", (request, response) =>
   findByCpfClienteController.handle(request, response)
 );
+
+router.delete("/clientes/cpf/:cpf", (request, response) =>
+  deleteClienteController.handle(request, response)
+);
+
 router.get("/clientes/email/:email", (request, response) =>
   findByEmailClienteController.handle(request, response)
 );
+
 router.get("/clientes/name/:name", (request, response) =>
   findByNameClienteController.handle(request, response)
 );
 
 router.post("/clientes/exists", (request, response) =>
   validateClienteController.handle(request, response)
+);
+
+router.get('/operations', (request, response) => 
+  listOperationsController.handle(request, response)
+);
+
+router.post('/operations', (request, response) => 
+  createOperationController.handle(request, response)
 );
 
 router.get("/status", (request, response) =>
