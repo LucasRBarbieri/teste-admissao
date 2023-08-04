@@ -9,6 +9,7 @@ import { validateClienteController } from "./useCases/ValidateCliente";
 import { listOperationsController } from "./useCases/ListOperations";
 import { createOperationController } from "./useCases/CreateOperation";
 import { deleteClienteController } from "./useCases/DeleteCliente";
+import { findOperationController } from "./useCases/FindOperation";
 
 const router = Router();
 
@@ -50,6 +51,10 @@ router.get('/operations', (request, response) =>
 
 router.post('/operations', (request, response) => 
   createOperationController.handle(request, response)
+);
+
+router.get('/operations/id/:id', (request, response) => 
+  findOperationController.handle(request, response)
 );
 
 router.get("/status", (request, response) =>
