@@ -16,6 +16,7 @@ function up(knex) {
             table.string('cpf').notNullable();
             table.string('name').notNullable();
             table.string('address').notNullable();
+            table.string('birth').notNullable();
             table.string('email').notNullable();
             table.string('password').notNullable();
             table.primary(['cpf']);

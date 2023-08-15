@@ -28,7 +28,7 @@ function HeaderComponent({ loggedName }) {
     try {
       const formData = {
         email,
-        password,
+        password
       };
 
       await api.post('clientes/exists', formData);
@@ -39,8 +39,8 @@ function HeaderComponent({ loggedName }) {
       localStorage.setItem('email', data[0].email);
       localStorage.setItem('phone', data[0].phone);
       localStorage.setItem('cpf', data[0].cpf);
-      localStorage.setItem('address', '');
-      localStorage.setItem('birth', '');
+      localStorage.setItem('address', data[0].address);
+      localStorage.setItem('birth', data[0].birth);
 
       history.push('/dashboard');
     } catch (error) {

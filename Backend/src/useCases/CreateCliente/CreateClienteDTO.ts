@@ -3,7 +3,7 @@ export interface ICreateClienteRequestDTO{
   name: string;
   phone: string;
   email: string;
-  password: string;
   address: string;
   birth: Date;
+  password: string;
 }

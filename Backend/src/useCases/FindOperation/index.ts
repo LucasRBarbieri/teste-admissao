@@ -1,6 +1,6 @@
 import { OperationRepo } from "../../repositories/implementation/OperationRepo";
 import { FindOperationUseCase } from "./FindOperationUseCase";
-import { FindOperationController } from "./FindOperationController"
+import { FindOperationController } from "./FindOperationController";
 
 const operationRepo = new OperationRepo();
 

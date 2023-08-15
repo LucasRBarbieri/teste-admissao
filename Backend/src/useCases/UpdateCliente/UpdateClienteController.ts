@@ -22,7 +22,7 @@ export class UpdateHeroController{
                 birth
             })
 
-            return response.status(200).send();
+            return response.status(200).send('User updated successfully');
         } catch (error: any) {
             return response.status(401).json({
                 message: error.message || 'Unexpected Error'

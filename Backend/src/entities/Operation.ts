@@ -1,6 +1,4 @@
-import { OperationRepo } from "../repositories/implementation/OperationRepo";
-import { PackageRepo } from "../repositories/implementation/PackageRepo";
-import { PackageUseCase } from "../useCases/Package/PackageUseCase";
+import { packageUseCase } from '../useCases/Package'
 
 export class Operation {
   public id!: number;
@@ -15,8 +13,10 @@ export class Operation {
     this.amount = props.amount;
     this.cpf_client = props.cpf_client;
     this.status = "Aberto";
+
     if (props.prefered_bill){
-    this.used_bill = props.prefered_bill;
+      this.prefered_bill = props.prefered_bill;
+      this.used_bill = props.prefered_bill;
     } else {
       if(this.amount % 100 === 0 && this.amount / 100 <= 50) {
         this.used_bill = 100;
@@ -34,15 +34,17 @@ export class Operation {
   }
 
     async SetIdPackage() {
-      const packageUseCase = new PackageUseCase(new PackageRepo())
       let packag = await packageUseCase.find_available(this)
-      if(packag)
-        this.id_package = packag.id
-      else {
-        packag = await packageUseCase.create({ amount: this.amount, used_bill: this.used_bill })
-        if(packag) this.id_package = packag.id
+      
+      if(packag) {
+        this.id_package = packag.id;
       }
-      packageUseCase.insert_into(this.id_package, this)
+      else {
+        packag = await packageUseCase.create({ used_bill: this.used_bill });
+        if(packag) this.id_package = packag.id;
+      }
+
+      await packageUseCase.insert_into(this.id_package, this);
     }
 
     GetIdPackage(): number | undefined {

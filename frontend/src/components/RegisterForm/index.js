@@ -9,7 +9,7 @@ function RegisterForm() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [cpf, setCpf] = useState('');
-  const [address, setAdress] = useState('');
+  const [address, setAddress] = useState('');
   const [birth, setBirth] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -78,7 +78,7 @@ function RegisterForm() {
           type="text"
           name="address"
           value={address}
-          onChange={(e) => setAdress(e.target.value)}
+          onChange={(e) => setAddress(e.target.value)}
         />
         <label htmlFor="birth">Birth</label>
         <input
@@ -89,7 +89,7 @@ function RegisterForm() {
         />
         <label htmlFor="password">Password</label>
         <input          
-          type="text"
+          type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

@@ -9,16 +9,22 @@ function LoggedArea() {
   const [loggedEmail, setLoggedEmail] = useState('');
   const [loggedPhone, setLoggedPhone] = useState('');
   const [loggedCpf, setLoggedCpf] = useState('');
+  const [loggedAddress, setLoggedAddress] = useState('');
+  const [loggedBirth, setLoggedBirth] = useState('');
 
   useEffect(() => {
     const loggedUserName = localStorage.getItem('name');
     const loggedUserEmail = localStorage.getItem('email');
     const loggedUserCpf = localStorage.getItem('cpf');
     const loggedUserPhone = localStorage.getItem('phone');
+    const loggedUserAdress = localStorage.getItem('address');
+    const loggedUserBirth = localStorage.getItem('birth');
 
     setLoggedName(loggedUserName);
     setLoggedEmail(loggedUserEmail);
     setLoggedCpf(loggedUserCpf);
+    setLoggedAddress(loggedUserAdress);
+    setLoggedBirth(loggedUserBirth);
     setLoggedPhone(loggedUserPhone);
   }, []);
 
@@ -38,6 +44,10 @@ function LoggedArea() {
               <p>{loggedPhone}</p>
               <h4>CPF</h4>
               <p>{loggedCpf}</p>
+              <h4>Address</h4>
+              <p>{loggedAddress}</p>
+              <h4>Birth</h4>
+              <p>{loggedBirth}</p>
             </div>
           </div>
           <UpdateForm />

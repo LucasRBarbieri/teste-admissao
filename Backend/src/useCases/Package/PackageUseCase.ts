@@ -16,9 +16,8 @@ export class PackageUseCase{
         const {
             used_bill
         } = data;
-        const bills_amount = this.calculate_bills_amount(data);
 
-        const packag = new Package({used_bill, bills_amount})
+        const packag = new Package({ used_bill })
         
         const { id } = await this.packageRepo.create(packag);
 
@@ -27,19 +26,19 @@ export class PackageUseCase{
 
     async insert_into(package_id: number, operation: Operation){
         const packag = await this.packageRepo.findById(package_id)
-
         const bills_amount = this.calculate_bills_amount(operation)
-
+        
         if (packag?.used_bill !== operation.used_bill) {
-            return {msg: 'Invalid bill'}
+            throw new Error('Invalid bill')
         }
-
-        if ((packag.bills_amount + bills_amount) > 50) {
-            return {msg: 'No room for those bills'}
+        
+        else if ((packag.bills_amount + bills_amount) > 50) {
+            throw new Error('No room for those bills')
         }
-
-        if((packag.bills_amount + bills_amount) === 50) {
-            packag.status = "Fechado"
+        
+        else if ((packag.bills_amount + bills_amount) === 50) {
+            packag.status = "Closed";
+            packag.closed_at = new Date().toISOString();
         }
 
         packag.bills_amount += bills_amount;
@@ -55,7 +54,12 @@ export class PackageUseCase{
         return this.packageRepo.findAvailableByBills(operation.used_bill, bills_amount)
     }
 
-    private calculate_bills_amount ({amount, used_bill}:{amount: number; used_bill: number;}) {
+    private calculate_bills_amount ({amount, used_bill}:{amount: number, used_bill: number})
+    {
         return amount / used_bill;
+    }
+
+    async execute() {
+        return await this.packageRepo.index();
     }
 }

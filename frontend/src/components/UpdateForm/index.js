@@ -7,6 +7,8 @@ function UpdateForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [birth, setBirth] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -20,6 +22,8 @@ function UpdateForm() {
       email,
       phone,
       cpf: localStorage.getItem('cpf'),
+      address,
+      birth,
       password
     };
 
@@ -63,6 +67,20 @@ function UpdateForm() {
           name="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+        />
+        <label htmlFor="phone">Address</label>
+        <input
+          type="text"
+          name="address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <label htmlFor="phone">Birth</label>
+        <input
+          type="text"
+          name="birth"
+          value={birth}
+          onChange={(e) => setBirth(e.target.value)}
         />
         <label htmlFor="password">Password</label>
         <input          

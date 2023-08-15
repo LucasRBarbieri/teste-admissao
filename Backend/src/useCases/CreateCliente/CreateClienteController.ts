@@ -6,11 +6,11 @@ export class CreateClienteController {
   constructor(private createClienteUseCase: CreateClienteUseCase) {}
 
   async handle(request: Request, response: Response) {
-    const { cpf, name, phone, email, password, address, birth } = request.body;
+    const { cpf, name, phone, email, address, birth, password } = request.body;
 
     try {
-      if (!cpf || !name || !phone || !email || !password || !address || !birth) {
-        return response.status(400).send('Missing one of the required fields: [cpf, name, phone, email, password, address, birth]');
+      if (!cpf || !name || !phone || !email || !address || !birth || !password) {
+        return response.status(400).send('Missing one of the required fields: [cpf, name, phone, email, address, birth, password ]');
       }
 
       if (!cpfValidator.isValid(cpf)){
@@ -22,12 +22,12 @@ export class CreateClienteController {
         name,
         phone,
         email,
-        password,
         address,
-        birth
+        birth,
+        password
       });
 
-      return response.status(200).send();
+      return response.status(200).send('Successfully registered user!');
     } 
     catch (error: any) {
       return response.status(401).json({

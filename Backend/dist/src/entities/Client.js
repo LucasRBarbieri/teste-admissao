@@ -6,6 +6,7 @@ class Client {
         this.cpf = props.cpf;
         this.name = props.name;
         this.address = props.address;
+        this.birth = props.birth;
         this.email = props.email;
         this.password = props.password;
     }

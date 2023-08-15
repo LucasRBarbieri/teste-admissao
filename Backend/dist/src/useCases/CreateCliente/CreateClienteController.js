@@ -17,7 +17,7 @@ class CreateClienteController {
     }
     handle(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { cpf, name, phone, email, password, address } = request.body;
+            const { cpf, name, phone, email, password, address, birth } = request.body;
             try {
                 yield this.createClienteUseCase.execute({
                     cpf,
@@ -25,7 +25,8 @@ class CreateClienteController {
                     phone,
                     email,
                     password,
-                    address
+                    address,
+                    birth
                 });
                 if (!cpf_cnpj_validator_1.cpf.isValid(cpf)) {
                     return response.status(400).send('Invalid cpf');

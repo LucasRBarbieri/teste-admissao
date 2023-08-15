@@ -8,23 +8,20 @@ export class CreateOperationController {
   async handle(request: Request, response: Response) {
     const {amount, cpf, prefered_bill} = request.body;
 
-    try {
-      if (!amount || !cpf) {
-        return response.status(400).send('Missing one of the required fields: [amount, cpf]');
-      }
-
-      await this.createOperationUseCase.execute({
-        amount,
-        cpf,
-        prefered_bill
-      });
-
-      return response.status(200).send();
+    if (!amount || !cpf) {
+      return response.status(400).send('Missing one of the required fields: [amount, cpf]');
     }
-    catch (error: any) {
-      return response.status(401).json({
-        message: error.message || "Unexpected Error",
-      });
+
+    if (prefered_bill && (prefered_bill !== 10 && prefered_bill !== 50 && prefered_bill !== 100)) {
+      return response.status(400).send('Invalid prefered_bill value. Select between: [10, 50, 100]')
     }
+
+    await this.createOperationUseCase.execute({
+      amount,
+      cpf,
+      prefered_bill
+    });
+
+    return response.status(200).send('Operation created');
   }
 }

@@ -10,6 +10,7 @@ import { listOperationsController } from "./useCases/ListOperations";
 import { createOperationController } from "./useCases/CreateOperation";
 import { deleteClienteController } from "./useCases/DeleteCliente";
 import { findOperationController } from "./useCases/FindOperation";
+import { packageController } from "./useCases/Package";
 
 const router = Router();
 
@@ -55,6 +56,10 @@ router.post('/operations', (request, response) =>
 
 router.get('/operations/id/:id', (request, response) => 
   findOperationController.handle(request, response)
+);
+
+router.get('/pacotes', (request, response) => 
+  packageController.handle(request, response)
 );
 
 router.get("/status", (request, response) =>
