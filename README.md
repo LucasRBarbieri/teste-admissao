@@ -27,7 +27,7 @@ npm start
 
 ## Frontend
 
-Para rodar o frontend é necessário executar os seguintes comandos no diretório frontend.
+Para rodar o frontend é necessário executar os seguintes comandos no diretório frontend e desejável NodeJS V16.
 
 ```sh
 npm install
