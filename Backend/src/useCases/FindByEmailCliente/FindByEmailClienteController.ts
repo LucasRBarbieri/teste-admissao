@@ -1,16 +1,26 @@
 import { FindByEmailClienteUseCase } from "./FindByEmailClienteUseCase";
 import { Request, Response } from "express";
+var jwt = require('jsonwebtoken');
 
 export class FindByEmailClienteController {
-  constructor(private findByEmailClienteUseCase: FindByEmailClienteUseCase) {}
+  constructor(private findByEmailClienteUseCase: FindByEmailClienteUseCase) { }
 
   async handle(request: Request, response: Response) {
-    const { email } = request.params;
-    try {
-      const cliente = await this.findByEmailClienteUseCase.execute(email);
 
-      return response.status(200).send(cliente);
-    } catch (error:any) {
+    const authToken = request.headers.authorization?.split(' ')[1] || null;
+
+    try {
+      jwt.verify(authToken, 'senha123', async (err: any, decoded: any) => {
+        if (err) {
+          return response.status(401).json({
+            message: err.message || "Unexpected Error",
+          });
+        } else {
+          const cliente = await this.findByEmailClienteUseCase.execute(decoded.email);
+          return response.status(200).send(cliente);
+        }
+      });
+    } catch (error: any) {
       return response.status(401).json({
         message: error.message || "Unexpected Error",
       });

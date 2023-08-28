@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import '../../assets/styles/registerForm.css';
 
-function UpdateForm() {
+function UpdateForm({ onFormSubmit }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [birth, setBirth] = useState('');
   const [password, setPassword] = useState('');
+  const [admin] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,8 +27,14 @@ function UpdateForm() {
       cpf: localStorage.getItem('cpf'),
       address,
       birth,
-      password
+      password,
+      admin: localStorage.getItem('admin')
     };
+
+    function handleLogOut() {
+      localStorage.clear();
+      history.push('/');
+    }
 
     try {
       await api.put('/clientes', clientPayload);
@@ -33,8 +42,12 @@ function UpdateForm() {
       localStorage.setItem('name', name);
       localStorage.setItem('email', email);
       localStorage.setItem('phone', phone);
+      localStorage.setItem('address', address);
+      localStorage.setItem('birth', birth);
+      localStorage.setItem('admin', admin);
 
       alert('Registration updated successfully!');
+      handleLogOut();
     } catch (err) {
       alert('There was a failure in the registration update!');
     } finally {
@@ -53,13 +66,15 @@ function UpdateForm() {
           name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
         <label htmlFor="email">E-mail</label>
         <input
-          type="text"
+          type="email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <label htmlFor="phone">Cellphone</label>
         <input
@@ -67,27 +82,33 @@ function UpdateForm() {
           name="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+          minLength={10}
+          maxLength={14}
+          required
         />
-        <label htmlFor="phone">Address</label>
+        <label htmlFor="address">Address</label>
         <input
           type="text"
           name="address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          required
         />
-        <label htmlFor="phone">Birth</label>
+        <label htmlFor="birth">Birth</label>
         <input
-          type="text"
+          type="date"
           name="birth"
           value={birth}
           onChange={(e) => setBirth(e.target.value)}
+          required
         />
         <label htmlFor="password">Password</label>
         <input          
-          type="text"
+          type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button disabled={loading} type="submit">Update</button>
       </form>
@@ -95,4 +116,4 @@ function UpdateForm() {
   )
 }
 
-export default UpdateForm;
+export default UpdateForm

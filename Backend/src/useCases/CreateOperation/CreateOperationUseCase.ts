@@ -1,4 +1,3 @@
-import { Package } from "../../entities/Package";
 import { Operation } from "../../entities/Operation";
 import { IOperationRepo } from "../../repositories/IOperationRepo";
 import { ICreateOperationDTO } from "./CreateOperationDTO"

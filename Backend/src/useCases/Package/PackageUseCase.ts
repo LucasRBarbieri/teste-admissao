@@ -2,7 +2,6 @@ import { Package } from "../../entities/Package";
 import { Operation } from "../../entities/Operation";
 import { IPackageRepo } from "../../repositories/IPackageRepo";
 import { ICreatePackageDTO } from "./PackageDTO";
-import { Request, Response } from "express";
 
 export class PackageUseCase{
 
@@ -27,15 +26,15 @@ export class PackageUseCase{
     async insert_into(package_id: number, operation: Operation){
         const packag = await this.packageRepo.findById(package_id)
         const bills_amount = this.calculate_bills_amount(operation)
-        
+
         if (packag?.used_bill !== operation.used_bill) {
             throw new Error('Invalid bill')
         }
-        
+
         else if ((packag.bills_amount + bills_amount) > 50) {
             throw new Error('No room for those bills')
         }
-        
+
         else if ((packag.bills_amount + bills_amount) === 50) {
             packag.status = "Closed";
             packag.closed_at = new Date().toISOString();

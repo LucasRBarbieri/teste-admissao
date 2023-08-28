@@ -5,9 +5,7 @@ export class PackageController{
 
   constructor(
       private packageUseCase: PackageUseCase
-  ){
-
-  }
+  ){}
 
   async handle(request: Request, response: Response){
     try {

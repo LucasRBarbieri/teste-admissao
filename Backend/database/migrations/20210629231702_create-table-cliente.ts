@@ -10,11 +10,11 @@ export async function up(knex: Knex): Promise<void> {
     table.string('phone').notNullable();
     table.string('email').notNullable();
     table.string('password').notNullable();
+    table.boolean('admin').defaultTo(false);
 
     table.primary(['cpf']);
   });
 }
-
 
 export async function down(knex: Knex): Promise<void> {
   knex.schema.dropTable("clients");

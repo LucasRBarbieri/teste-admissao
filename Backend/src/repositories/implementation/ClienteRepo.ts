@@ -54,11 +54,11 @@ export class ClienteRepo implements IClientRepo {
     }
   }
 
-  async validatePass(email: string, password: string): Promise<boolean> {
+  async validatePass(cpf: string, password: string): Promise<boolean> {
     return !!(
       await connection("clients")
         .select("*")
-        .where({ email, password })
+        .where({ cpf, password })
         .from<Client>("clients")
     ).pop();
   }

@@ -7,7 +7,7 @@ export class ValidateClienteUseCase{
 
     }
 
-    async execute({ email, password }: {email: string, password: string}){
-        return await this.clienteRepo.validatePass(email, password)
+    async execute({ cpf, password }: {cpf: string, password: string}){
+        return await this.clienteRepo.validatePass(cpf, password)
     }
 }

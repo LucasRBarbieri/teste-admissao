@@ -38,7 +38,7 @@ export class PackageRepo implements IPackageRepo {
         await connection("packages")
             .select("*")
             .where("used_bill", used_bill)
-            .andWhere('status', "Aberto")
+            .andWhere('status', "Open")
             .andWhereBetween("bills_amount", [0, 51-bills_amount])
             .from<Package>("packages")
     ).pop()

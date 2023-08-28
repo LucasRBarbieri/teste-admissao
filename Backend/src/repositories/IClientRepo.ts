@@ -6,7 +6,7 @@ export interface IClientRepo {
   findByEmail(email: string): Promise<Client[]>;
   index(): Promise<Client[]>;
 
-  validatePass(email: string, password:string): Promise<boolean>;
+  validatePass(cpf: string, password:string): Promise<boolean>;
 
   create(cliente: Client): Promise<void>;
   update(cliente: Client): Promise<void>;

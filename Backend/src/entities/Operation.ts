@@ -12,7 +12,7 @@ export class Operation {
   constructor(props: {amount: number, cpf_client: string, prefered_bill?: number}) {
     this.amount = props.amount;
     this.cpf_client = props.cpf_client;
-    this.status = "Aberto";
+    this.status = "Open";
 
     if (props.prefered_bill){
       this.prefered_bill = props.prefered_bill;

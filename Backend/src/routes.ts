@@ -26,7 +26,7 @@ router.put("/clientes", (request, response) =>
   updateClienteController.handle(request, response)
 );
 
-router.get("/clientes/cpf/:cpf", (request, response) =>
+router.get("/cliente", (request, response) =>
   findByCpfClienteController.handle(request, response)
 );
 
@@ -46,19 +46,19 @@ router.post("/clientes/exists", (request, response) =>
   validateClienteController.handle(request, response)
 );
 
-router.get('/operations', (request, response) => 
+router.get('/operations', (request, response) =>
   listOperationsController.handle(request, response)
 );
 
-router.post('/operations', (request, response) => 
+router.post('/operations', (request, response) =>
   createOperationController.handle(request, response)
 );
 
-router.get('/operations/id/:id', (request, response) => 
+router.get('/operations/id/:id', (request, response) =>
   findOperationController.handle(request, response)
 );
 
-router.get('/pacotes', (request, response) => 
+router.get('/pacotes', (request, response) =>
   packageController.handle(request, response)
 );
 

@@ -9,7 +9,7 @@ export class UpdateHeroController{
     }
 
     async handle(request:Request, response:Response){
-        const { cpf, name, phone, email, password, address, birth } = request.body;
+        const { cpf, name, phone, email, password, address, birth, admin } = request.body;
 
         try {
             await this.updateClienteUseCase.execute({
@@ -19,7 +19,8 @@ export class UpdateHeroController{
                 email,
                 password,
                 address,
-                birth
+                birth,
+                admin
             })
 
             return response.status(200).send('User updated successfully');

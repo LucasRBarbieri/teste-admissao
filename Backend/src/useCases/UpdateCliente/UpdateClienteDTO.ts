@@ -6,4 +6,5 @@ export interface IUpdateClienteRequestDTO{
   password: string;
   address: string;
   birth: Date;
+  admin: boolean;
 }
