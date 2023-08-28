@@ -104,7 +104,7 @@ function HeaderComponent({ loggedName }) {
                 type="string"
                 value={formatCPF(cpf)}
                 required
-                placeholder="xxx.xxx.xxx-xx"
+                placeholder="CPF"
                 onChange={e => setCpf(e.target.value)}
               />
               <input
