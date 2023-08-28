@@ -37,5 +37,5 @@ npm start
 
 Há um usuário com a permissão de admin já habilitado, para acessá-lo basta fazer o login com as credenciais:
 
-CPF: ```sh 518.009.500-04```
-Password: ```sh admin```
+CPF: ```518.009.500-04```
+Password: ```admin```
